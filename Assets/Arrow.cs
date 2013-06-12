@@ -18,6 +18,7 @@ public class Arrow : MonoBehaviour
 		//trail = transform.Find("Trail").GetComponent<TrailRenderer>();
 		particles = transform.Find("Particle System").particleSystem;
 		//particles.Play();
+		//collider.enabled = false;
 	}
 	
 	void OnCollisionEnter(Collision other)
@@ -53,6 +54,8 @@ public class Arrow : MonoBehaviour
 		isAlive = true;
 		//Invoke("StartTrail", 0.1f);
 		StartTrail();
+		collider.enabled = true;
+		BroadcastMessage("EnableCollider", SendMessageOptions.DontRequireReceiver);
 	}
 	
 	void StartTrail()
@@ -65,5 +68,20 @@ public class Arrow : MonoBehaviour
 	{
 		//trail.enabled = false;
 		particles.Stop();
+	}
+	
+	public void Stick()
+	{
+		if(isAlive)
+		{
+			Debug.Log("Arrow stuck at " + transform.position);
+			rigidbody.velocity = Vector3.zero;
+			rigidbody.Sleep();
+			rigidbody.isKinematic = true;
+			
+			isAlive = false;
+			Invoke("KillTrail", 0.5f);
+			Destroy(gameObject, 10.0f);
+		}
 	}
 }

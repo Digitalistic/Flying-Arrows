@@ -1,0 +1,16 @@
+
+*.csproj
+
+*.pidb
+
+*.sln
+
+Library/
+
+Temp/
+
+Library/AnnotationManager
+
+Library/AssetImportState
+
+Flying Arrows.userprefs

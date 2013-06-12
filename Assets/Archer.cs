@@ -45,9 +45,12 @@ public class Archer : MonoBehaviour
 	
 	void ProcessMovement()
 	{
+		float myY = rigidbody.velocity.y;
+		
 		moveForward = Input.GetAxis("Vertical") * transform.forward * runSpeed;
 		moveStrafe = Input.GetAxis("Horizontal") * transform.right * strafeSpeed;
 		myVelo = moveForward + moveStrafe;
+		myVelo.y = myY;
 		
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
