@@ -30,6 +30,7 @@ public class Arrow : MonoBehaviour
 		isAlive = false;
 		Invoke("KillTrail", 0.5f);
 		Destroy(gameObject, 10.0f);
+		particles.enableEmission = false;
 	}
 	
 	void Update()
@@ -82,6 +83,7 @@ public class Arrow : MonoBehaviour
 			isAlive = false;
 			Invoke("KillTrail", 0.5f);
 			Destroy(gameObject, 10.0f);
+			particles.enableEmission = false;
 		}
 	}
 }
