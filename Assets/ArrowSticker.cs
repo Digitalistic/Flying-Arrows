@@ -11,14 +11,12 @@ public class ArrowSticker : MonoBehaviour
 		a = transform.parent.GetComponent<Arrow>();
 	}
 	
-	void OnCollisionEnter(Collision other)
-	{
-		a.Stick();	
-	}
-	
 	void OnTriggerEnter(Collider other)
 	{
-		a.Stick();
+		if(other.tag == "Player")
+			a.Stick(other.transform, true);
+		else
+			a.Stick(other.transform, false);
 	}
 	
 	void EnableCollider()

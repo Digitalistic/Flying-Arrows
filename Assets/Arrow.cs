@@ -27,7 +27,8 @@ public class Arrow : MonoBehaviour
 		rigidbody.Sleep();
 		rigidbody.isKinematic = true;*/
 		
-		isAlive = false;
+		//isAlive = false;
+		//rigidbody.Sleep();
 		Invoke("KillTrail", 0.5f);
 		Destroy(gameObject, 10.0f);
 		particles.enableEmission = false;
@@ -69,9 +70,10 @@ public class Arrow : MonoBehaviour
 	{
 		//trail.enabled = false;
 		particles.Stop();
+		isAlive = false;
 	}
 	
-	public void Stick()
+	public void Stick(Transform newParent, bool shouldParent)
 	{
 		if(isAlive)
 		{
@@ -84,6 +86,9 @@ public class Arrow : MonoBehaviour
 			Invoke("KillTrail", 0.5f);
 			Destroy(gameObject, 10.0f);
 			particles.enableEmission = false;
+			
+			if(shouldParent)
+				transform.parent = newParent;
 		}
 	}
 }
